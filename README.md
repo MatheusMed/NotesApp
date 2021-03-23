@@ -7,19 +7,19 @@ Aplicativo criado em flutter
 ```javascript
   Libs [
   
-    getx -> Usado para Gerenciamento de Estado
+    getx -> Usado para gerenciamento de estado
     
     sqflite -> Usado para banco de dados local para salvar as notas
     
     hive -> Usado para armazenar o tema padrao
     
-    flutter_native_splash -> Usado Criar a splash Screen do Aplicativo
+    flutter_native_splash -> Usado criar a splash screen do aplicativo
     
     path_provider -> Usado em conjunto com o sqflite para direcionar do arquivo do banco de dados
     
-    splashscreen - > Criar o loading para a tela de Home enquanto carrega o Tema e as Notas 
+    splashscreen - > Usado para criar o loading para a tela de home enquanto carrega o tema e as notas 
     
-    flutter_launcher_icons  -> Usado Para criar o Icone do aplicativo
+    flutter_launcher_icons  -> Usado para criar o icone do aplicativo
     
     
   ]
