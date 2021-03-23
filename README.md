@@ -4,4 +4,15 @@ Aplicativo criado em flutter
 
 ## Libs Usadas
 
-# NotesApp
+```javascript
+  Libs [
+    Getx
+    Sqflite
+    flutter_native_splash
+    path_provider
+    splashscreen
+  ]
+    
+```
+<br> <br>
+
