@@ -1,4 +1,4 @@
-# app_notes
+# Aplicativo de Notas
 
   Aplicativo criado em flutter 
 
