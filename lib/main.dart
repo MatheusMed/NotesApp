@@ -19,7 +19,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Splash(),
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Color(0xff028090),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         brightness: Brightness.light,
         scaffoldBackgroundColor: Color(0xffedffec),

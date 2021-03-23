@@ -2,6 +2,7 @@ import 'package:app_notes/Pages/notas_page.dart';
 import 'package:app_notes/controllers/theme_controller.dart';
 import 'package:app_notes/db/Database.dart';
 import 'package:app_notes/models/Notes.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,8 +25,8 @@ class _HomePageState extends State<HomePage> {
     _exibirTodasNotas();
   }
 
-  void _exibirTodasNotas() async {
-    await db.getAllNotes().then((lista) {
+  void _exibirTodasNotas() {
+    db.getAllNotes().then((lista) {
       setState(() {
         notas = lista;
       });
@@ -76,19 +77,41 @@ class _HomePageState extends State<HomePage> {
   }
 
   _listaNotas(context, index) {
-    return Card(
-      child: ListTile(
-        title: Text(
-          notas[index].titulo ?? '',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        subtitle: Text(notas[index].descricao ?? ''),
-        onTap: () {
-          _exibirContatoPage(nota: notas[index]);
-        },
-        onLongPress: () {
+    return Dismissible(
+      background: Card(
+          color: Colors.red,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Icon(Icons.delete, color: Colors.white),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Deletar',
+                  style: TextStyle(color: Colors.white),
+                ),
+              )
+            ],
+          )),
+      key: Key(notas[index].titulo),
+      direction: DismissDirection.endToStart,
+      // ignore: missing_return
+      confirmDismiss: (direction) async {
+        if (direction == DismissDirection.endToStart) {
           _confirmarExclusao(context, notas[index].id, index);
-        },
+        }
+      },
+      child: Card(
+        child: ListTile(
+          title: Text(
+            notas[index].titulo ?? '',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          subtitle: Text(notas[index].descricao ?? ''),
+          onTap: () {
+            _exibirContatoPage(nota: notas[index]);
+          },
+        ),
       ),
     );
   }
@@ -123,7 +146,7 @@ class _HomePageState extends State<HomePage> {
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),
             content: Text(
-              'Confirmar exclusao de Nota',
+              'Confirmar Exclusão de Nota',
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),
             actions: [
@@ -151,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                             onPressed: () {},
                           ),
                           content: Text(
-                            'Excluido com sucesso',
+                            'Excluido com Sucesso!',
                             style: TextStyle(color: Colors.white),
                           )));
                     });
@@ -163,5 +186,34 @@ class _HomePageState extends State<HomePage> {
             ],
           );
         });
+  }
+
+  Widget slideLeftBackground() {
+    return Container(
+      color: Colors.red,
+      child: Align(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Icon(
+              Icons.delete,
+              color: Colors.white,
+            ),
+            Text(
+              " Delete",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+              ),
+              textAlign: TextAlign.right,
+            ),
+            SizedBox(
+              width: 20,
+            ),
+          ],
+        ),
+        alignment: Alignment.centerRight,
+      ),
+    );
   }
 }

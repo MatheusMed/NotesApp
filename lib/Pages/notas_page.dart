@@ -76,26 +76,30 @@ class _NotasPageState extends State<NotasPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TextField(
-              controller: _tituloController,
-              focusNode: _titleFocus,
-              decoration: InputDecoration(
-                  hintText: 'Nota', labelText: "Digite a Sua Nota"),
-              onChanged: (text) {
-                editado = true;
-                setState(() {
-                  _editaNota.titulo = text;
-                });
-              },
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: TextField(
+                controller: _tituloController,
+                focusNode: _titleFocus,
+                decoration: InputDecoration(labelText: "Digite a Sua Nota"),
+                onChanged: (text) {
+                  editado = true;
+                  setState(() {
+                    _editaNota.titulo = text;
+                  });
+                },
+              ),
             ),
-            TextField(
-              controller: _descricaoController,
-              decoration: InputDecoration(
-                  hintText: 'Descriçao', labelText: "Digite sua Descriçao"),
-              onChanged: (text) {
-                editado = true;
-                _editaNota.descricao = text;
-              },
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: TextField(
+                controller: _descricaoController,
+                decoration: InputDecoration(labelText: "Digite Sua Descrição"),
+                onChanged: (text) {
+                  editado = true;
+                  _editaNota.descricao = text;
+                },
+              ),
             ),
           ],
         ),
@@ -109,11 +113,11 @@ class _NotasPageState extends State<NotasPage> {
         builder: (context) {
           return AlertDialog(
             title: Text(
-              'Titulo e Descriçao',
+              'Titulo e Descrição',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             content: Text(
-              'Informe o titulo e a Descriçao da nota por favor',
+              'Informe o Titulo e a Descrição da Nota Por Favor',
               style: TextStyle(fontSize: 18),
             ),
             actions: [
